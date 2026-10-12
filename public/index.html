@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Luna Rosa | Carta Astral</title>
+    <meta
+      name="description"
+      content="Descubri tu signo, ascendente orientativo y accede a una carta astral completa con promo especial."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="site-shell">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__visual" aria-hidden="true">
+          <div class="moon-card">
+            <img src="./assets/astral-orbit.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="hero__content">
+          <span class="eyebrow">Lectura gratis + informe por aporte</span>
+          <h1 id="hero-title">Descubri que dice tu carta astral</h1>
+          <p>
+            Empeza gratis con tu signo, un anticipo de ascendente y tu energia emocional.
+            Si queres ir mas profundo, generas tu informe por un aporte simbolico para mantener el sitio.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#consulta">Empezar lectura</a>
+            <a class="button button--ghost" href="#premium">Ver informes</a>
+          </div>
+          <div class="trust-strip" aria-label="Beneficios">
+            <span>Lectura personalizada</span>
+            <span>Entrega digital</span>
+            <span>Aporte $500 ARS</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="consulta" class="panel consultation" aria-labelledby="form-title">
+        <div class="section-heading">
+          <span class="eyebrow">Paso 1</span>
+          <h2 id="form-title">Tus datos de nacimiento</h2>
+          <p>
+            Con esto generamos un primer repaso. La lectura gratis funciona como una puerta de entrada:
+            te muestra la energia principal y deja planteadas las preguntas que se responden en el informe completo.
+          </p>
+          <p class="honesty-note">
+            Esta demo calcula el signo solar por fecha. Ascendente, luna y compatibilidad son orientativos; para el informe
+            real se confirma ciudad de nacimiento, zona horaria y, si la sabes, la hora exacta.
+          </p>
+        </div>
+
+        <form class="birth-form" id="birth-form">
+          <label>
+            Nombre
+            <input id="firstName" name="firstName" type="text" placeholder="Ej: Martina" required />
+          </label>
+          <label>
+            Apellido
+            <input id="lastName" name="lastName" type="text" placeholder="Ej: Gomez" required />
+          </label>
+          <label>
+            Fecha de nacimiento
+            <input id="birthDate" name="birthDate" type="date" required />
+          </label>
+          <div class="time-row">
+            <label>
+              Hora <span class="optional-label">opcional</span>
+              <input id="birthHour" name="birthHour" type="number" min="0" max="23" placeholder="14" />
+            </label>
+            <label>
+              Minutos <span class="optional-label">opcional</span>
+              <input id="birthMinute" name="birthMinute" type="number" min="0" max="59" placeholder="35" />
+            </label>
+          </div>
+          <p class="form-hint">Si no sabes la hora, hacemos una lectura general. Ascendente y casas quedan como aproximados.</p>
+          <button class="button button--primary button--wide" type="submit">Ver mi repaso gratis</button>
+        </form>
+      </section>
+
+      <section class="intro-notes" aria-label="Que vas a descubrir">
+        <article>
+          <span>Signo solar</span>
+          <p>Marca tu brillo principal, tu forma de decidir y la energia que mas reconoces de vos.</p>
+        </article>
+        <article>
+          <span>Ascendente</span>
+          <p>Habla de como arrancas las cosas, como te perciben y que estilo usas para moverte por el mundo.</p>
+        </article>
+        <article>
+          <span>Mapa completo</span>
+          <p>Une planetas, casas y aspectos para entender patrones, etapas y temas que se repiten.</p>
+        </article>
+      </section>
+
+      <section class="reading-grid" aria-label="Resultados de lectura">
+        <article class="reading-card reading-card--active" id="solar-card">
+          <div class="card-topline">
+            <span>Gratis</span>
+            <strong>01</strong>
+          </div>
+          <h3>Tu signo solar</h3>
+          <p id="solar-result">Completa tus datos para ver el primer resultado.</p>
+        </article>
+
+        <article class="reading-card is-locked" id="asc-card">
+          <div class="card-topline">
+            <span>Anticipo</span>
+            <strong>02</strong>
+          </div>
+          <h3>Ascendente orientativo</h3>
+          <p id="asc-result">Se desbloquea despues del repaso inicial.</p>
+          <button class="mini-button" id="unlock-asc" type="button" disabled>Desbloquear anticipo</button>
+        </article>
+
+        <article class="reading-card is-locked" id="moon-card">
+          <div class="card-topline">
+            <span>Gancho</span>
+            <strong>03</strong>
+          </div>
+          <h3>Base emocional</h3>
+          <p id="moon-result">Un vistazo breve antes de la carta completa.</p>
+          <button class="mini-button" id="unlock-moon" type="button" disabled>Ver energia emocional</button>
+        </article>
+
+        <article class="reading-card reading-card--wide is-locked" id="compat-card">
+          <div class="card-topline">
+            <span>Gratis</span>
+            <strong>04</strong>
+          </div>
+          <h3>Compatibilidad express</h3>
+          <p id="compat-result">
+            Despues de cargar tus datos, elegi el signo de otra persona y mira afinidades y puntos de choque.
+          </p>
+          <div class="compat-form">
+            <label>
+              Signo de la otra persona
+              <select id="partner-sign" disabled>
+                <option value="">Elegir signo</option>
+              </select>
+            </label>
+            <button class="mini-button" id="check-compat" type="button" disabled>Ver compatibilidad</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="bridge" id="bridge" aria-labelledby="bridge-title">
+        <div>
+          <span class="eyebrow">Tu lectura va tomando forma</span>
+          <h2 id="bridge-title">Esto no termina en el signo</h2>
+          <p id="bridge-copy">
+            Cuando completes tus datos, aca vas a ver una sintesis mas amplia para entender por que la carta completa
+            cruza varios elementos al mismo tiempo.
+          </p>
+        </div>
+        <div class="bridge__list">
+          <article>
+            <strong>Lo que ya vimos</strong>
+            <p id="seen-copy">Tu punto de partida aparece despues del primer repaso.</p>
+          </article>
+          <article>
+            <strong>Lo que falta mirar</strong>
+            <p>Casas astrologicas, aspectos entre planetas, area vincular, trabajo, desafios y timing personal.</p>
+          </article>
+          <article>
+            <strong>Que aparece despues</strong>
+            <p>El mapa completo une planetas, casas y aspectos para convertir los datos en una lectura clara.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="premium" class="product-section" aria-labelledby="premium-title">
+        <div class="section-heading section-heading--center">
+          <span class="eyebrow">Si queres profundizar</span>
+          <h2 id="premium-title">Elegis que informe abrir</h2>
+          <p>
+            La parte gratis te muestra el clima general. Al final podes abrir una lectura mas completa para vos
+            o una compatibilidad de pareja con puntos en comun.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card product-card--main" data-product-card="basic">
+            <span class="badge">Para vos</span>
+            <h3>Mi carta astral basica</h3>
+            <p>
+              Una lectura clara con mapa estelar, planetas principales, ascendente y una interpretacion inicial.
+            </p>
+            <ul>
+              <li>Identidad, emociones y forma de accionar.</li>
+              <li>Mapa visual con planetas marcados.</li>
+              <li>Recomendaciones simples para releer.</li>
+            </ul>
+            <div class="product-price">
+              <strong>$500 ARS</strong>
+              <small>Aporte para mantener el sitio.</small>
+            </div>
+            <button class="button button--primary button--wide select-product" type="button" data-product="basic">
+              Elegir mi carta
+            </button>
+          </article>
+
+          <article class="product-card" data-product-card="couple">
+            <span class="badge">Para pareja</span>
+            <h3>Compatibilidad con carta astral</h3>
+            <p>
+              Compara dos cartas y muestra donde se potencian, donde chocan y que pueden construir juntos.
+            </p>
+            <ul>
+              <li>Amor: quimica, cuidado y lenguaje afectivo.</li>
+              <li>Dinero: ritmos, prioridades y acuerdos practicos.</li>
+              <li>Proyecto de vida: hogar, planes y manera de mirar futuro.</li>
+            </ul>
+            <div class="product-price">
+              <strong>$1.500 ARS</strong>
+              <small>Incluye tus datos y los de la otra persona.</small>
+            </div>
+            <button class="button button--ghost button--wide select-product" type="button" data-product="couple">
+              Elegir compatibilidad
+            </button>
+          </article>
+        </div>
+
+        <div class="payment-card payment-card--compact">
+          <span class="badge">Pago de prueba</span>
+          <h3 id="selected-product-title">Informe seleccionado: mi carta astral</h3>
+          <p id="selected-product-copy">
+            En esta demo usamos el codigo maestro para desbloquear. En produccion, el codigo llegaria despues de confirmar el pago.
+          </p>
+          <div class="alias-box">
+            <span>Alias MercadoPago</span>
+            <strong id="alias-text">TU.ALIAS.MP</strong>
+          </div>
+          <button class="button button--primary button--wide" id="copy-alias" type="button">
+            Copiar alias
+          </button>
+        </div>
+      </section>
+
+      <section class="unlock-demo" aria-labelledby="unlock-title">
+        <div class="section-heading">
+          <span class="eyebrow">Prueba de desbloqueo</span>
+          <h2 id="unlock-title">Recibi tu codigo por correo</h2>
+          <p>
+            Esta prueba muestra el flujo: pedis el codigo, lo ingresas y se desbloquea el informe. En produccion,
+            este codigo llegaria por mail despues de confirmar el pago.
+          </p>
+        </div>
+        <div class="unlock-grid">
+          <form class="unlock-card" id="unlock-form">
+            <label>
+              Email para recibir el codigo
+              <input id="unlock-email" type="email" placeholder="tuemail@email.com" required />
+            </label>
+            <button class="button button--primary button--wide" type="submit">Enviar codigo por email</button>
+          </form>
+          <form class="unlock-card" id="code-form">
+            <label>
+              Codigo recibido
+              <input id="unlock-code" placeholder="Ej: LUNA500" required />
+            </label>
+            <button class="button button--ghost button--wide" type="submit">Desbloquear informe</button>
+            <p class="fine-print">
+              Codigo maestro de prueba: LUNA500. Usa Buenos Aires como ciudad fija hasta sumar busqueda de ubicacion.
+            </p>
+          </form>
+        </div>
+        <div class="partner-panel" id="partner-panel" hidden>
+          <div class="section-heading">
+            <span class="eyebrow">Datos de la otra persona</span>
+            <h2>Compatibilidad de pareja</h2>
+            <p>
+              Para la prueba usamos Buenos Aires como ciudad fija. En la version final, cada persona podria elegir su ciudad.
+            </p>
+          </div>
+          <div class="partner-form">
+            <label>
+              Nombre
+              <input id="partner-name" type="text" placeholder="Ej: Facundo" />
+            </label>
+            <label>
+              Fecha de nacimiento
+              <input id="partner-date" type="date" />
+            </label>
+            <div class="time-row">
+              <label>
+                Hora <span class="optional-label">opcional</span>
+                <input id="partner-hour" type="number" min="0" max="23" placeholder="22" />
+              </label>
+              <label>
+                Minutos <span class="optional-label">opcional</span>
+                <input id="partner-minute" type="number" min="0" max="59" placeholder="10" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <article class="unlocked-report" id="unlocked-report" hidden>
+          <div>
+            <span class="badge">Informe desbloqueado</span>
+            <h3 id="report-title">Tu carta astral basica</h3>
+            <div class="report-actions">
+              <button class="button button--ghost" id="download-pdf" type="button">Descargar PDF</button>
+            </div>
+            <div class="report-meta" id="report-meta"></div>
+            <p id="unlocked-copy">
+              Cargando calculo real...
+            </p>
+            <div class="api-status" id="api-status">Esperando codigo.</div>
+            <div class="astro-summary" id="astro-summary"></div>
+          </div>
+          <div class="astro-map" id="astro-map" aria-label="Mapa estelar calculado">
+            <span>El mapa aparece al desbloquear el informe</span>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <nav class="mobile-cta" aria-label="Accion principal">
+      <a href="#consulta">Probar gratis</a>
+      <a href="#premium">Ver informes</a>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Alias copiado</div>
+    <script src="./script.js"></script>
+  </body>
+</html>

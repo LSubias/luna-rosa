@@ -1,0 +1,11 @@
+{
+  "name": "luna-rosa-carta-astral",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node --env-file=.env local/server.mjs"
+  },
+  "engines": { "node": ">=20.x" }
+}
