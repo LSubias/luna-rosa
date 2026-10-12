@@ -134,7 +134,46 @@ export function verifyUnlockToken({ token, code }) {
   return { ok: true, email: data.email, product: data.product };
 }
 
+async function sendViaAppsScript({ webAppUrl, secret, email, code, product }) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
+
+  try {
+    const response = await fetch(webAppUrl, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ secret, email, code, product }),
+      redirect: "follow",
+      signal: controller.signal,
+    });
+
+    const text = await response.text();
+    let body = {};
+
+    try {
+      body = JSON.parse(text);
+    } catch {
+      throw new Error("El servicio de correo no respondio como se esperaba.");
+    }
+
+    if (!response.ok || body.ok !== true) {
+      throw new Error(body.error || "No se pudo enviar el correo.");
+    }
+
+    return { ok: true, provider: "appsscript" };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 export async function sendUnlockEmail({ email, code, product }) {
+  const gasUrl = process.env.GAS_WEBAPP_URL;
+  const gasSecret = process.env.GAS_SECRET;
+
+  if (gasUrl && gasSecret) {
+    return sendViaAppsScript({ webAppUrl: gasUrl, secret: gasSecret, email, code, product });
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL || "Luna Rosa <onboarding@resend.dev>";
 

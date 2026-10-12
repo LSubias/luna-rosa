@@ -829,7 +829,7 @@ unlockForm.addEventListener("submit", async (event) => {
     }
 
     currentUnlockToken = data.token;
-    showToast(data.provider === "resend" ? "Te enviamos el codigo por email" : "Codigo generado (mira la consola del servidor)");
+    showToast(data.provider !== "console" ? "Te enviamos el codigo por email" : "Codigo generado (mira la consola del servidor)");
   } catch (error) {
     showToast(error.message);
   } finally {
